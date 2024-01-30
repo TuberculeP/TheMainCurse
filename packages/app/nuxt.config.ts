@@ -1,10 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: 'src',
   devtools: { enabled: true },
   routeRules: {
     '/': { prerender: true },
-    '/recettes/**': { isr: true },
+    '/recipes/**': { isr: false },
   },
   css: ['@unocss/reset/normalize.css', '~/assets/css/main.css'],
   modules: ['@unocss/nuxt', '@nuxt/image', '@nuxtjs/strapi', '@pinia/nuxt'],
