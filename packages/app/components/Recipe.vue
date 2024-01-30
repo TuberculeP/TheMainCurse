@@ -14,7 +14,7 @@ const { recipe } = defineProps<{ recipe: any }>();
 <style scoped lang="scss">
 .card {
   text-align: center;
-  border: 1px solid black;
+  border: 10px double red;
   a {
     img {
       width: 100%;

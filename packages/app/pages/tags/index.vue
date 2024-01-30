@@ -5,7 +5,6 @@ const { data: tags } = useAsyncData("allTags", () => find("tags"));
 </script>
 <template>
   <div class="tags">
-    <h1>Tous les tags :</h1>
     <div class="tags-list">
       <NuxtLink
         v-for="tag in tags?.data"

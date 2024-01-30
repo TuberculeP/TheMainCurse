@@ -7,7 +7,7 @@ console.log(search, results);
 <template>
   <div class="container" v-if="!pending">
     <div class="flex flex-col items-center gap-y-4">
-      <h2>Recettes</h2>
+      <h1 class="bouuuh">Recettes</h1>
       <input type="text" placeholder="rechercher" v-model="search" />
       <div class="recipe-container">
         <Recipe v-for="recipe in results" :key="recipe.id" :recipe="recipe" />
@@ -24,5 +24,19 @@ console.log(search, results);
   align-items: flex-end;
   justify-content: center;
   gap: 20px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: cursive;
+  color: darkred;
+  transform: scaleY(-1);
 }
 </style>

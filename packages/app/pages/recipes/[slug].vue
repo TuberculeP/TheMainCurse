@@ -10,39 +10,50 @@ console.log(recipe.value);
 
 <template>
   <div class="recipe" v-if="!pending">
-    <div class="title">
-      <NuxtImg :src="recipe?.data.image.url" />
-      <h1>{{ recipe?.data.Title }}</h1>
+    <div class="image">
       <NuxtImg :src="recipe?.data.image.url" />
     </div>
-    <p>{{ recipe?.data.Description }}</p>
-    <div class="tags">
-      <span v-for="tag in recipe?.data.tags" :key="tag.id">{{ tag.name }}</span>
+    <div class="columns">
+      <div>
+        <div class="title">
+          <h1 class="bouuuh">{{ recipe?.data.Title }}</h1>
+        </div>
+        <q>{{ recipe?.data.Description }}</q>
+        <h4>Découvrez plus par catégorie :</h4>
+        <div class="tags" v-if="recipe?.data.tags?.length">
+          <NuxtLink
+            :to="`/tags/${tag.name}`"
+            v-for="tag in recipe?.data.tags"
+            :key="tag.id"
+          >
+            <span>{{ tag.name }}</span>
+          </NuxtLink>
+        </div>
+        <p v-else>ah ben nn ducoup</p>
+      </div>
+      <div>
+        <div
+          class="steps"
+          v-if="recipe?.data.Steps"
+          v-html="$md.render(recipe?.data.Steps)"
+        ></div>
+      </div>
     </div>
-    <div
-      class="steps"
-      v-if="recipe?.data.Steps"
-      v-html="$md.render(recipe?.data.Steps)"
-    ></div>
   </div>
   <Loading v-else />
 </template>
 
 <style scoped lang="scss">
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-    scale: 1;
-  }
-  50% {
-    scale: 0.6;
-  }
-  100% {
-    transform: rotate(359deg);
-    scale: 1;
-  }
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px;
+  gap: 30px;
 }
-
+q {
+  display: block;
+  padding-bottom: 20px;
+}
 .recipe {
   padding: 20px;
   text-align: center;
@@ -51,11 +62,18 @@ console.log(recipe.value);
     justify-content: center;
     align-items: center;
     gap: 20px;
+  }
+  .image {
+    background: url("~/assets/bats.gif");
+    display: flex;
+    justify-content: center;
     img {
-      width: 150px;
-      animation: rotate 2s infinite linear;
+      width: 250px;
+      display: block;
+      width: fit-content;
     }
   }
+
   .tags {
     display: flex;
     justify-content: center;
